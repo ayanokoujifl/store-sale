@@ -13,6 +13,7 @@ import com.ayanokoujifl.cursomc.entities.Cidade;
 import com.ayanokoujifl.cursomc.entities.Cliente;
 import com.ayanokoujifl.cursomc.entities.Endereco;
 import com.ayanokoujifl.cursomc.entities.Estado;
+import com.ayanokoujifl.cursomc.entities.ItemPedido;
 import com.ayanokoujifl.cursomc.entities.Pagamento;
 import com.ayanokoujifl.cursomc.entities.PagamentoComBoleto;
 import com.ayanokoujifl.cursomc.entities.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.ayanokoujifl.cursomc.repositories.CidadeRepository;
 import com.ayanokoujifl.cursomc.repositories.ClienteRepository;
 import com.ayanokoujifl.cursomc.repositories.EnderecoRepository;
 import com.ayanokoujifl.cursomc.repositories.EstadoRepository;
+import com.ayanokoujifl.cursomc.repositories.ItemPedidoRepository;
 import com.ayanokoujifl.cursomc.repositories.PagamentoRepository;
 import com.ayanokoujifl.cursomc.repositories.PedidoRepository;
 import com.ayanokoujifl.cursomc.repositories.ProdutoRepository;
@@ -59,6 +61,9 @@ public class CursoMcApplication implements CommandLineRunner {
 
 	@Autowired
 	PagamentoRepository pagamentoRepository;
+
+	@Autowired
+	ItemPedidoRepository itemPedidoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -105,6 +110,16 @@ public class CursoMcApplication implements CommandLineRunner {
 
 		cli1.setPedidos(Arrays.asList(ped1, ped2));
 
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 00.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 00.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+
 		estadoRepository.saveAllAndFlush(Arrays.asList(est1, est2));
 		cidadeRepository.saveAllAndFlush(Arrays.asList(c1, c2, c3));
 		categoriaRepository.saveAllAndFlush(Arrays.asList(cat1, cat2));
@@ -113,5 +128,6 @@ public class CursoMcApplication implements CommandLineRunner {
 		enderecoRepository.saveAllAndFlush(Arrays.asList(e1, e2));
 		pedidoRepository.saveAllAndFlush(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAllAndFlush(Arrays.asList(pagto1, pagto2));
+		itemPedidoRepository.saveAllAndFlush(Arrays.asList(ip1, ip2, ip3));
 	}
 }
