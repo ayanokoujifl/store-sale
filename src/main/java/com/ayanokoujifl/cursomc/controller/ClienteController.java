@@ -17,7 +17,7 @@ public class ClienteController {
 	ClienteService service;
 
 	@RequestMapping(value = "/{id}")
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
+	public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
 		Cliente c = service.findById(id);
 		return ResponseEntity.ok().body(c);
 	}
