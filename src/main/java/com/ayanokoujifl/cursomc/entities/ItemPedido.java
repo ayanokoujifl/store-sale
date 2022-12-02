@@ -20,7 +20,6 @@ public class ItemPedido implements Serializable {
 	private Double desconto;
 
 	public ItemPedido() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public ItemPedido(Pedido pedido, Produto produto, Double preco, Integer quantidade, Double desconto) {

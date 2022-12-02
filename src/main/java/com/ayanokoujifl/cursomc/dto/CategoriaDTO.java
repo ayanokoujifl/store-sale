@@ -18,7 +18,6 @@ public class CategoriaDTO implements Serializable {
 	private String nome;
 	
 	public CategoriaDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public CategoriaDTO(Categoria obj) {
