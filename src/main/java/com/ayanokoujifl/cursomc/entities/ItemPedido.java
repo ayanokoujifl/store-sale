@@ -89,4 +89,8 @@ public class ItemPedido implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
+	public double getSubTotal() {
+		return (preco - desconto) * quantidade;
+	}
+
 }

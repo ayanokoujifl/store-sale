@@ -139,9 +139,9 @@ public class CursoMcApplication implements CommandLineRunner {
 
 		cli1.setPedidos(Arrays.asList(ped1, ped2));
 
-		ItemPedido ip1 = new ItemPedido(ped1, p1, 00.00, 1, 2000.00);
-		ItemPedido ip2 = new ItemPedido(ped1, p3, 00.00, 2, 80.00);
-		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 2000.00, 1,00.00 );
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 80.00, 2, 00.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 800.00, 1, 100.00);
 
 		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
 		ped2.getItens().addAll(Arrays.asList(ip3));

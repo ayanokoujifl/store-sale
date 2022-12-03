@@ -25,30 +25,30 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date Instant;
-	
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "pedido")
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	@JoinColumn(name = "pagamento_id")
 	private Pagamento pagamento;
-	
-														@ManyToOne
-	@JoinColumn(name="cliente_id")
-	private Cliente cliente;
-	
+
 	@ManyToOne
-	@JoinColumn(name="endereco_de_entrega_id")
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
+
+	@ManyToOne
+	@JoinColumn(name = "endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
 
 	@OneToMany(mappedBy = "id.pedido")
-	private Set<ItemPedido> itens = new HashSet<>(); 
-	
+	private Set<ItemPedido> itens = new HashSet<>();
+
 	public Pedido() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pedido(Integer id, Date instant,  Cliente cliente, Endereco enderecoDeEntrega) {
+	public Pedido(Integer id, Date instant, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
 		Instant = instant;
@@ -125,6 +125,12 @@ public class Pedido implements Serializable {
 		this.itens = itens;
 	}
 
-	
-	
+	public double getValorTotal() {
+		double soma = 0;
+		for(ItemPedido x:itens) {
+			soma+=x.getSubTotal();
+		}
+		return soma;
+	}
+
 }
