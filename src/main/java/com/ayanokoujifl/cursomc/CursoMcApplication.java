@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.ayanokoujifl.cursomc.controller.utils.URL;
 import com.ayanokoujifl.cursomc.entities.Categoria;
 import com.ayanokoujifl.cursomc.entities.Cidade;
 import com.ayanokoujifl.cursomc.entities.Cliente;
