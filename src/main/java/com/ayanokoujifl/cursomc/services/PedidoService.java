@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.ayanokoujifl.cursomc.entities.ItemPedido;
 import com.ayanokoujifl.cursomc.entities.PagamentoComBoleto;
 import com.ayanokoujifl.cursomc.entities.Pedido;
-import com.ayanokoujifl.cursomc.entities.Produto;
 import com.ayanokoujifl.cursomc.entities.enums.EstadoPagamento;
 import com.ayanokoujifl.cursomc.repositories.ClienteRepository;
 import com.ayanokoujifl.cursomc.repositories.ItemPedidoRepository;
@@ -35,10 +34,13 @@ public class PedidoService {
 
 	@Autowired
 	ItemPedidoRepository itemPedidoRepository;
-	
+
 	@Autowired
 	ClienteRepository clienteRepository;
 
+	@Autowired
+	EmailService emailService;
+	
 	public Pedido findById(Integer id) {
 		Optional<Pedido> pedido = repository.findById(id);
 		return pedido.orElseThrow(() -> new ObjectNotFoundException(
@@ -64,7 +66,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
 
