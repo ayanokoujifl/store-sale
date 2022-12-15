@@ -1,8 +1,11 @@
 package com.ayanokoujifl.cursomc.entities;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -45,7 +48,6 @@ public class Pedido implements Serializable {
 	private Set<ItemPedido> itens = new HashSet<>();
 
 	public Pedido() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Pedido(Integer id, Date instant, Cliente cliente, Endereco enderecoDeEntrega) {
@@ -133,4 +135,27 @@ public class Pedido implements Serializable {
 		return soma;
 	}
 
+	@Override
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt","BR"));
+		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido numero: ");
+		builder.append(getId());
+		builder.append(", Instante: ");
+		builder.append(sdf.format(getInstant()));
+		builder.append(", Cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situação do pagamento: ");
+		builder.append(getPagamento().getEstadoPagamento().getDescricao());
+		builder.append("\nDetalhes:\n");
+		for(ItemPedido ip : itens) {
+			builder.append(ip.toString());
+		}
+		builder.append("Valor total: ");
+		builder.append(nf.format(getValorTotal()));
+		return builder.toString();
+	}
+
+	
 }
