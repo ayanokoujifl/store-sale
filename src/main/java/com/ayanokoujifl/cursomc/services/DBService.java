@@ -114,7 +114,7 @@ public class DBService {
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
 
-		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "16564423616", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Maria Silva", "guleite3@gmail.com", "16564423616", TipoCliente.PESSOAFISICA);
 		cli1.getTelefones().addAll(Arrays.asList("38997569902", "38999707497"));
 
 		Endereco e1 = new Endereco(null, "Rua flores", "212", "casa", "Primeiro de maio", "39670-000", cli1, c1);
