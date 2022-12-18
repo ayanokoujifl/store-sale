@@ -17,9 +17,12 @@ import com.ayanokoujifl.cursomc.dto.ClienteNewDTO;
 import com.ayanokoujifl.cursomc.entities.Cidade;
 import com.ayanokoujifl.cursomc.entities.Cliente;
 import com.ayanokoujifl.cursomc.entities.Endereco;
+import com.ayanokoujifl.cursomc.entities.enums.Perfil;
 import com.ayanokoujifl.cursomc.entities.enums.TipoCliente;
 import com.ayanokoujifl.cursomc.repositories.ClienteRepository;
 import com.ayanokoujifl.cursomc.repositories.EnderecoRepository;
+import com.ayanokoujifl.cursomc.security.UserSS;
+import com.ayanokoujifl.cursomc.services.exception.AuthorizationException;
 import com.ayanokoujifl.cursomc.services.exception.DataIntegrityException;
 import com.ayanokoujifl.cursomc.services.exception.ObjectNotFoundException;
 
@@ -31,11 +34,15 @@ public class ClienteService {
 
 	@Autowired
 	EnderecoRepository enderecoRepository;
-	
+
 	@Autowired
 	BCryptPasswordEncoder be;
-	
+
 	public Cliente findById(Integer id) {
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado!");
+		}
 		Optional<Cliente> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Cliente não encontrado! Id: " + id + ", Tipo: " + ClienteService.class.getName()));
@@ -80,12 +87,12 @@ public class ClienteService {
 	}
 
 	public Cliente fromDto(ClienteDTO obj) {
-		return new Cliente(obj.getId(), obj.getNome(), obj.getEmail(), null, null,null);
+		return new Cliente(obj.getId(), obj.getNome(), obj.getEmail(), null, null, null);
 	}
 
 	public Cliente fromDto(ClienteNewDTO obj) {
 		Cliente c = new Cliente(null, obj.getNome(), obj.getEmail(), obj.getNumeroDocumento(),
-				TipoCliente.toEnum(obj.getTipo()),be.encode(obj.getSenha()));
+				TipoCliente.toEnum(obj.getTipo()), be.encode(obj.getSenha()));
 		Cidade cid = new Cidade();
 		cid.setId(obj.getCidadeId());
 		Endereco end = new Endereco(null, obj.getLogradouro(), obj.getNumero(), obj.getComplemento(), obj.getBairro(),
@@ -99,5 +106,18 @@ public class ClienteService {
 			c.getTelefones().add(obj.getTelefone3());
 		}
 		return c;
+	}
+
+	public Cliente findByEmail(String email) {
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		Cliente obj = repository.findByEmail(email);
+		if(obj==null) {
+			throw new ObjectNotFoundException(
+					"Cliente não encontrado!\nId: " + user.getId() + ", Tipo: " + Cliente.class.getName());
+		}
+		return obj;
 	}
 }
