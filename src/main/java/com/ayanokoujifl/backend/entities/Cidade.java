@@ -18,15 +18,15 @@ public class Cidade implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "estado_id")
 	private Estado estado;
-	
+
 	public Cidade() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Cidade(Integer id, String nome, Estado estado) {
 		super();
 		this.id = id;
@@ -69,12 +69,10 @@ public class Cidade implements Serializable{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		Cidade other = (Cidade) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 }

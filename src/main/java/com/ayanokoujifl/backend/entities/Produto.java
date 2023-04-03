@@ -39,7 +39,7 @@ public class Produto implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> itens = new HashSet<>();
-	
+
 	@JsonIgnore
 	public List<Pedido> getPedidos(){
 		List<Pedido> pedidos=new ArrayList<>();
@@ -48,7 +48,7 @@ public class Produto implements Serializable {
 		}
 		return pedidos;
 	}
-	
+
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
@@ -68,9 +68,7 @@ public class Produto implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		Produto other = (Produto) obj;
 		return Objects.equals(id, other.id);

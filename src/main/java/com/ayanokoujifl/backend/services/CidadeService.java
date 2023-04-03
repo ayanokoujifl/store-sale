@@ -13,9 +13,9 @@ public class CidadeService {
 
 	@Autowired
 	CidadeRepository repository;
-	
+
 	public List<Cidade> findByEstado(Integer estadoId){
 		return repository.findCidades(estadoId);
 	}
-	
+
 }

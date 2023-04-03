@@ -91,9 +91,7 @@ public class ItemPedido implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		ItemPedido other = (ItemPedido) obj;
 		return Objects.equals(id, other.id);

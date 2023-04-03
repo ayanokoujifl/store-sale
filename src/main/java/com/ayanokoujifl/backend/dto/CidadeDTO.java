@@ -6,10 +6,10 @@ public class CidadeDTO {
 
 	private Integer id;
 	private String nome;
-	
+
 	public CidadeDTO() {
 	}
-	
+
 	public CidadeDTO(Cidade obj) {
 		this.id=obj.getId();
 		this.nome=obj.getNome();

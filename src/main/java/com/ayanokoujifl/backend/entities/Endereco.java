@@ -24,12 +24,12 @@ public class Endereco implements Serializable {
 	private String complemento;
 	private String bairro;
 	private String cep;
-	
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-	
+
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
 	private Cidade cidade;
@@ -124,9 +124,7 @@ public class Endereco implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		Endereco other = (Endereco) obj;
 		return Objects.equals(id, other.id);

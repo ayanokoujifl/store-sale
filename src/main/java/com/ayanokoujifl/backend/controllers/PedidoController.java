@@ -20,7 +20,7 @@ import com.ayanokoujifl.backend.services.PedidoService;
 @RestController
 @RequestMapping(value = "/pedidos")
 public class PedidoController {
-	
+
 	@Autowired
 	PedidoService service;
 

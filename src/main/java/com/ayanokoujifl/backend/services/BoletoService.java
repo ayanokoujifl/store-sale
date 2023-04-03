@@ -16,5 +16,5 @@ public class BoletoService {
 		cal.add(Calendar.DAY_OF_MONTH, 7);
 		pagto.setDataVencimento(cal.getTime());
 	}
-	
+
 }

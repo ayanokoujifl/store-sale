@@ -3,7 +3,6 @@ package com.ayanokoujifl.backend.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -47,7 +46,7 @@ public class CategoriaService {
 	private void updateData(Categoria newObj,Categoria obj) {
 		newObj.setNome(obj.getNome());
 	}
-	
+
 	public void delete(Integer id) {
 		findById(id);
 		try {
@@ -61,7 +60,7 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repository.findAll(pageRequest);
 	}
-	
+
 	public Categoria fromDto(CategoriaDTO obj) {
 		return new Categoria(obj.getId(),obj.getNome());
 	}

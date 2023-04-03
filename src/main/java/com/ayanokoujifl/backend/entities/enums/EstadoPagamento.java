@@ -30,7 +30,7 @@ public enum EstadoPagamento {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	public static EstadoPagamento toEnum(Integer cod) {
 		if(cod==null) {
 			return null;
@@ -43,5 +43,5 @@ public enum EstadoPagamento {
 			throw new IllegalArgumentException("Id invalido! Id: "+cod);
 		}
 	}
-	
+
 }

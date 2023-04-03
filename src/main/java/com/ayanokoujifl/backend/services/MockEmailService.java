@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class MockEmailService extends AbstractEmailService {
 
 	private static Logger LOG = LoggerFactory.getLogger(MockEmailService.class);
-	
+
 	@Override
 	public void sendEmail(SimpleMailMessage msg) {
 		LOG.info("Simulando envio de email");

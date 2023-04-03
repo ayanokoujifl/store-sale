@@ -34,7 +34,7 @@ public class PedidoService {
 
 	@Autowired
 	ClienteService clienteService;
-	
+
 	@Autowired
 	PagamentoRepository pagamentoRepository;
 
@@ -49,7 +49,7 @@ public class PedidoService {
 
 	@Autowired
 	EmailService emailService;
-	
+
 	public Pedido findById(Integer id) {
 		Optional<Pedido> pedido = repository.findById(id);
 		return pedido.orElseThrow(() -> new ObjectNotFoundException(
@@ -88,6 +88,6 @@ public class PedidoService {
 		Cliente cliente = clienteService.findById(user.getId());
 		return repository.findByCliente(cliente, pageRequest);
 	}
-	
-	
+
+
 }

@@ -10,13 +10,13 @@ import com.ayanokoujifl.backend.entities.Categoria;
 
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
-	
+
 	@NotEmpty
 	@Length(min = 5,max = 80,message = "O nome deve possuir o minimo de 5 e máximo de 80 caracteres")
 	private String nome;
-	
+
 	public CategoriaDTO() {
 	}
 
@@ -24,7 +24,7 @@ public class CategoriaDTO implements Serializable {
 		this.id=obj.getId();
 		this.nome=obj.getNome();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

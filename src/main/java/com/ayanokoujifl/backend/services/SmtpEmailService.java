@@ -13,12 +13,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class SmtpEmailService extends AbstractEmailService {
 
-	@Autowired
 	private MailSender mailSender;
 
-	@Autowired
 	private JavaMailSender javaMailSender;
-	
+
 	private static Logger LOG = LoggerFactory.getLogger(SmtpEmailService.class);
 
 	@Override

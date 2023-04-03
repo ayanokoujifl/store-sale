@@ -19,7 +19,7 @@ public class ProdutoDTO implements Serializable {
 		nome=obj.getNome();
 		preco=obj.getPreco();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

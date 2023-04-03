@@ -31,7 +31,7 @@ public enum Perfil {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	public static Perfil toEnum(Integer cod) {
 		if(cod==null) {
 			return null;
@@ -44,5 +44,5 @@ public enum Perfil {
 			throw new IllegalArgumentException("Id invalido! Id: "+cod);
 		}
 	}
-	
+
 }

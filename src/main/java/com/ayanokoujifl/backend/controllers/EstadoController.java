@@ -23,22 +23,22 @@ public class EstadoController {
 
 	@Autowired
 	EstadoService service;
-	
+
 	@Autowired
 	CidadeService cidadeService;
-	
+
 	@GetMapping
 	public ResponseEntity<List<EstadoDTO>> findAll(){
 		List<Estado> list=service.findAll();
 		List<EstadoDTO> listDto= list.stream().map(x-> new EstadoDTO(x)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
-	
+
 	@GetMapping(value = "/{id}/cidades")
 	public ResponseEntity<List<CidadeDTO>> findCidades(@PathVariable Integer id){
 		List<Cidade>list= cidadeService.findByEstado(id);
 		List<CidadeDTO> listDto = list.stream().map(obj-> new CidadeDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
-	
+
 }

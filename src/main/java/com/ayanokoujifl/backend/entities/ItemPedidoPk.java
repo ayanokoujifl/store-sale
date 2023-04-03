@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class ItemPedidoPk implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
@@ -44,9 +44,7 @@ public class ItemPedidoPk implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		ItemPedidoPk other = (ItemPedidoPk) obj;
 		return Objects.equals(pedido, other.pedido) && Objects.equals(produto, other.produto);

@@ -11,5 +11,5 @@ import com.ayanokoujifl.backend.entities.Estado;
 public interface EstadoRepository extends JpaRepository<Estado, Integer> {
 
 	public List<Estado> findAllByOrderByNome();
-	
+
 }
