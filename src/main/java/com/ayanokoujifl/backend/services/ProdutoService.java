@@ -37,4 +37,9 @@ public class ProdutoService {
 		return repository.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);
 	}
 
+	public Page<Produto> findAll(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageable = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repository.findAll(pageable);
+	}
+
 }
